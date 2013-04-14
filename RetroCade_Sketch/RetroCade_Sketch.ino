@@ -266,6 +266,8 @@ void HandlePitchBend(byte channel, int bend) {
 }
 
 void HandleNoteOn(byte channel, byte pitch, byte velocity) {
+  if ( velocity == 0 )
+    return HandleNoteOff(channel, pitch, velocity);
   #ifdef DEBUG
     Serial.print("Note Received: ");
     Serial.println(pitch);
